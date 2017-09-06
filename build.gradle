@@ -1,0 +1,51 @@
+apply plugin: 'java'
+group = 'net.sf.arbocdi'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+def versionJetty = '9.3.7.v20160115'
+def mockitoVersion = '1.10.19'
+def versionJunit = '4.9'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+task libs(type: Copy) {
+    into "$buildDir/libs"
+    from configurations.runtime
+}
+dependencies {
+    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: versionJetty
+    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: versionJetty,classifier:'javadoc'
+    
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: versionJetty
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: versionJetty,classifier:'javadoc'
+    
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlets', version: versionJetty
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlets', version: versionJetty,classifier:'javadoc'
+
+    compile group: 'net.sf.selibs',name: 'utils',version: '1.1-SNAPSHOT'
+    
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18',classifier:'javadoc'
+    
+    compile group:'org.apache.httpcomponents',name: 'httpclient', version: '4.5.1'
+    compile group:'org.apache.httpcomponents',name: 'httpclient', version: '4.5.1',classifier:'javadoc'
+    compile group:'org.apache.httpcomponents',name: 'httpclient', version: '4.5.1',classifier:'sources'
+    
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.1'
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.1',classifier:'javadoc'
+    
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0',classifier:'javadoc'
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.9.0'
+    
+     testCompile group: 'junit', name: 'junit', version: versionJunit
+    testCompile group: 'org.mockito', name: 'mockito-all', version: mockitoVersion
+
+}
